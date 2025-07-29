@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place an Order</title>
+  <link rel="stylesheet" href="../css/product.css">
+</head>
+<body>
+  <div id="image-modal" class="modal">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="modal-image">
+  </div>
+  <div class="container">
+    <p id="loader">Loading...</p>
+    
+    <div id="product-container"></div>
+    <div id="order-form-container"></div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../functions/product.js" defer></script>
+</body>
+</html>

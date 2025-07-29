@@ -1,0 +1,92 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 2rem;
+  }
+  
+  .container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #1e293b;
+    margin-top: 0;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: #475569;
+  }
+  
+  tr:hover {
+    background-color: #f8fafc;
+  }
+  /* Add this to the end of your orders-admin.css file */
+
+/* --- Responsive Styles for Mobile --- */
+@media (max-width: 768px) {
+  table {
+    border: 0;
+  }
+
+  /* Hide the table header */
+  table thead {
+    display: none;
+  }
+
+  /* Make each row look like a card */
+  table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+  }
+
+  /* Make each cell a full-width block */
+  table td {
+    display: block;
+    text-align: right; /* Align data to the right */
+    border-bottom: 1px dotted #ccc;
+    padding-left: 50%; /* Make space for the label */
+    position: relative;
+  }
+
+  /* Add the header label before each cell */
+  table td::before {
+    content: attr(data-label); /* Use the data-label attribute as content */
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  /* Style the action buttons to stack nicely */
+  table td:last-child {
+    border-bottom: 0;
+  }
+  
+  table td button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}

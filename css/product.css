@@ -1,0 +1,186 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f1f5f9;
+  margin: 0;
+  padding: 1rem; /* Adjusted for smaller screens */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 1.5rem; /* Adjusted for smaller screens */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#loader {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* --- Product Details Layout --- */
+.product-details {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --- Image Gallery --- */
+.product-gallery .main-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.thumbnails img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.thumbnails img.active {
+  border-color: #2563eb;
+}
+
+/* --- Product Info --- */
+.product-info h1 {
+  margin-top: 0;
+  font-size: 1.8rem; /* Adjusted for mobile */
+}
+
+.product-info .price {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #16a34a;
+  margin: 1rem 0;
+}
+
+.product-info .description {
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* --- Order Form --- */
+#order-form-container {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#home-address-group {
+  display: none;
+}
+
+.delivery-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.delivery-option input[type="radio"] {
+  width: auto; /* Prevent radio buttons from taking full width */
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #9ca3af;
+}
+
+/* --- Image Modal --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* --- Responsive styles for larger screens --- */
+@media (min-width: 768px) {
+  body {
+    padding: 2rem;
+  }
+  .container {
+    padding: 2rem;
+  }
+  /* Switch to two columns on tablets and desktops */
+  .product-details {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .product-info h1 {
+    font-size: 2rem;
+  }
+  .product-info .price {
+    font-size: 1.5rem;
+  }
+}
