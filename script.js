@@ -20,7 +20,7 @@ function displayProducts() {
       // This part stays the same: it saves data for the next page
       card.addEventListener('click', () => {
         sessionStorage.setItem('selectedProduct', JSON.stringify(product));
-        window.location.href = '/pages/product.html';
+        window.location.href = './pages/product.html';
       });
       
       productsContainer.appendChild(card);

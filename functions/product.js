@@ -24,7 +24,7 @@ function setupPage() {
     // 3. Display the product details
     document.title = product.name;
     productContainer.innerHTML = `
-      <a href="/index.html">home page</a>
+      <a href="../index.html">home page</a>
       <p> click the image to make it bigger</p>
       <div class="product-details">
         <div class="product-gallery">
