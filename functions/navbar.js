@@ -25,12 +25,12 @@ export function insertNavbar() {
                     <span class="bar"></span>
                 </button>
                 <ul class="nav-links desktop-nav" id="desktop-nav-links-container">
-                    <li><a href="/">Main Page</a></li>               <li><a href="/pages/about-us.html">About Us</a></li>     <li><a href="/pages/contact-us.html">Contact Us</a></li> </ul>
+                    <li><a href="/">Main Page</a></li>               <li><a href="about-us.html">About Us</a></li>     <li><a href="contact-us.html">Contact Us</a></li> </ul>
             </nav>
 
             <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
             <ul class="nav-links mobile-nav" id="mobile-nav-links-container">
-                <li><a href="/">Main Page</a></li>               <li><a href="/pages/about-us.html">About Us</a></li>     <li><a href="/pages/contact-us.html">Contact Us</a></li> </ul>
+                <li><a href="/">Main Page</a></li>               <li><a href="about-us.html">About Us</a></li>     <li><a href="contact-us.html">Contact Us</a></li> </ul>
         </header>
     `;
 
