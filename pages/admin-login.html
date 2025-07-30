@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="../css/delivery-admin.css"> <style>
+    
+    <link rel="stylesheet" href="/css/admin.css"> 
+    
+    <base href="/maybe-the-finale-/"> 
+    
+    <style>
         /* Specific styles for the login container */
         .login-container {
             max-width: 400px;
@@ -75,6 +80,10 @@
         </form>
     </div>
 
-    <script type="module" src="../functions/admin-login.js"></script>
-</body>
+    <script type="module">
+        // Import path also needs to be ROOT-RELATIVE
+        import { insertNavbar } from '/functions/navbar.js'; // CORRECTED: Added /
+        insertNavbar();
+    </script>
+    <script type="module" src="/functions/admin-login.js"></script> </body>
 </html>

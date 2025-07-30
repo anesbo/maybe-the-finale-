@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
-    <link rel="stylesheet" href="../css/navbar.css">
+    
+    <link rel="stylesheet" href="/css/navbar.css"> 
+    
+    <base href="/maybe-the-finale-/"> 
+    
     <style>
         /* Specific styles for about us page, if not already in admin.css */
         body{
@@ -51,7 +55,8 @@
 </head>
 <body>
     <script type="module">
-        import { insertNavbar } from '../functions/navbar.js'; // Adjust path if navbar.js is in a different folder
+        // Import path needs to be ROOT-RELATIVE
+        import { insertNavbar } from '/functions/navbar.js'; // CORRECTED: Added /
         insertNavbar();
     </script>
 
@@ -59,19 +64,16 @@
         <h1>About Us</h1>
 
         <div class="profile-image-container">
-            <img src="path/to/your/profile.jpg" alt="Your Profile Picture" class="profile-image">
-            </div>
+            <img src="/images/id=2/2.jpg" alt="Your Profile Picture" class="profile-image"> </div>
 
         <div class="about-text">
-            <p>Hello there! My name is [Your Name], and I'm a passionate web developer based in the vibrant city of Setif, Algeria. With a keen interest in crafting intuitive and user-friendly digital experiences, I've dedicated myself to learning and mastering the art of web development.</p>
+            <p>Hello there! My name is anes bouziad, and I'm a passionate web developer based in the vibrant city of Setif, Algeria. With a keen interest in crafting intuitive and user-friendly digital experiences, I've dedicated myself to learning and mastering the art of web development.</p>
 
             <p>My journey into the world of code began with [mention how you started, e.g., a personal project, a course, etc.], and since then, I've been constantly expanding my skillset. I enjoy working with technologies like HTML, CSS, and JavaScript to build engaging front-end interfaces. I also have experience with back-end development using [mention any back-end technologies or frameworks you know, e.g., Node.js, Python, PHP, and Supabase for databases and authentication, as seen in this project].</p>
 
             <p>I believe that a well-designed website should not only be visually appealing but also highly functional and accessible to everyone. I strive to create web solutions that are both efficient and enjoyable to use.</p>
 
-            <p>This project [mention the name of your current project, if applicable] is a testament to my dedication and learning process. I'm always eager to take on new challenges and collaborate on exciting projects. Feel free to reach out through the <a href="contact-us.html">Contact Us</a> page if you have any inquiries or opportunities.</p>
-
-            <p>Thank you for visiting!</p>
+            <p>This project [mention the name of your current project, if applicable] is a testament to my dedication and learning process. I'm always eager to take on new challenges and collaborate on exciting projects. Feel free to reach out through the <a href="contact-us.html">Contact Us</a> page if you have any inquiries or opportunities.</p> <p>Thank you for visiting!</p>
         </div>
     </div>
 </body>

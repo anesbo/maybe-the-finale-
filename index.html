@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     <title>My Store</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./css/navbar.css"> 
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>My Store</title>
+    <link rel="stylesheet" href="style.css">         <link rel="stylesheet" href="css/navbar.css">   </head>
 <body>
     <script type="module">
-        import { insertNavbar } from './functions/navbar.js'; // Adjust path if navbar.js is in a different folder
+        // Import path needs to be relative to index.html's location
+        import { insertNavbar } from './functions/navbar.js'; 
         insertNavbar();
     </script>
     <div id="products-container"></div>
     <p id="loader">Loading...</p>
 
-    <script src="./functions/products.js"></script>
-    <script src="./script.js" defer></script>
+    <script src="functions/products.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

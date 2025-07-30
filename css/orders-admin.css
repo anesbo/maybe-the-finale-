@@ -2,7 +2,6 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f8fafc;
     margin: 0;
-    padding: 2rem;
   }
   
   .container {
@@ -90,3 +89,46 @@ body {
     margin-bottom: 5px;
   }
 }
+/* Add these to your admin.css file (or wherever your main admin styles are) */
+
+/* Initial Loading Overlay */
+#initial-loading-message {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.5em; color: #333; z-index: 2000; flex-direction: column;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #4CAF50;
+  border-radius: 50%; width: 30px; height: 30px;
+  animation: spin 1s linear infinite; margin-top: 10px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+#main-admin-content { display: none; }
+
+/* Specific styles for the orders table buttons */
+td button {
+  margin-right: 5px; /* Space out buttons */
+}
+td button[data-action="done"] { background-color: #28a745; }
+td button[data-action="done"]:hover { background-color: #218838; }
+td button[data-action="cancel"] { background-color: #ffc107; color: #333;}
+td button[data-action="cancel"]:hover { background-color: #e0a800; }
+td button[data-action="delete"] { background-color: #dc3545; }
+td button[data-action="delete"]:hover { background-color: #c82333; }
+/* Add these to your admin.css file (or wherever your main admin styles are) */
+
+/* Initial Loading Overlay */
+#initial-loading-message {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.5em; color: #333; z-index: 2000; flex-direction: column;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #4CAF50;
+  border-radius: 50%; width: 30px; height: 30px;
+  animation: spin 1s linear infinite; margin-top: 10px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+#main-admin-content { display: none; }

@@ -4,37 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Orders Admin</title>
-    <link rel="stylesheet" href="../css/orders-admin.css">
-    <style>
-        /* These styles should be in admin.css now */
-        #initial-loading-message {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: flex; justify-content: center; align-items: center;
-            font-size: 1.5em; color: #333; z-index: 2000; flex-direction: column;
-        }
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #4CAF50;
-            border-radius: 50%; width: 30px; height: 30px;
-            animation: spin 1s linear infinite; margin-top: 10px;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #main-admin-content { display: none; }
-
-        /* Specific styles for the orders table buttons */
-        td button {
-            margin-right: 5px; /* Space out buttons */
-        }
-        td button[data-action="done"] { background-color: #28a745; }
-        td button[data-action="done"]:hover { background-color: #218838; }
-        td button[data-action="cancel"] { background-color: #ffc107; color: #333;}
-        td button[data-action="cancel"]:hover { background-color: #e0a800; }
-        td button[data-action="delete"] { background-color: #dc3545; }
-        td button[data-action="delete"]:hover { background-color: #c82333; }
-
-    </style>
-</head>
+    
+    <base href="/maybe-the-finale-/"> 
+    
+    <link rel="stylesheet" href="/css/orders-admin.css">  <link rel="stylesheet" href="/css/navbar.css">   </head>
 <body>
+    <script type="module">
+        // Import path also needs to be ROOT-RELATIVE
+        import { insertNavbar } from '/functions/navbar.js'; // CORRECTED: Added /
+        insertNavbar();
+    </script>
+
     <div id="initial-loading-message">
         <p>Checking admin access...</p>
         <div class="spinner"></div>
@@ -44,7 +24,7 @@
         <h1>Customer Orders Management</h1>
 
         <nav class="admin-nav">
-            <a href="delivery-prices-admin.html">Delivery Prices</a>
+            <a href="delivery-admin.html">Delivery Prices</a>
             <a href="orders-admin.html" class="active">Customer Orders</a>
         </nav>
 
@@ -72,9 +52,8 @@
                 </table>
             </div>
         </div>
-        <p class="back-link"><a href="index.html">Back to Home</a></p>
-        </div>
+        <p class="back-link"><a href="index.html">Back to Home</a></p> 
+    </div>
 
-    <script type="module" src="../functions/orders-admin.js"></script>
-</body>
+    <script type="module" src="/functions/orders-admin.js"></script> </body>
 </html>

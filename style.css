@@ -8,7 +8,6 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-
 }
 
 h1 {
@@ -35,7 +34,7 @@ h1 {
 /* Products Grid */
 #products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
 }
@@ -86,5 +85,54 @@ h1 {
   text-align: center;
   padding: 2rem;
   color: #64748b;
+}
+/* admin.css */
+
+/* ... (Your existing CSS for body, container, h1, search-container, #search-bar) ... */
+
+/* Products Grid */
+#products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Default for larger screens */
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* ... (Your existing Product Card Styling) ... */
+
+
+/* --- Responsive Adjustments for Main Page Grid (Add these new rules to admin.css) --- */
+@media (max-width: 1024px) { /* Adjust for medium screens like tablets */
+  #products-container {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Smaller min-width */
+      gap: 1rem;
+      padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) { /* Adjust for smaller tablets and phones */
+  #products-container {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Even smaller min-width */
+      padding: 1rem;
+  }
+  .product-card {
+      margin: 0 auto; /* Center cards if they don't fill the row */
+      max-width: 350px; /* Limit individual card width if only one column */
+  }
+}
+
+@media (max-width: 480px) { /* Adjust specifically for small phones */
+  #products-container {
+      grid-template-columns: 1fr; /* Single column layout for very small screens */
+      gap: 1rem;
+      padding: 0.5rem;
+  }
+  .product-card {
+      max-width: 95%; /* Ensure card fits well within phone screen */
+      margin: 0 auto; /* Center card */
+  }
+  .product-card img {
+      height: 180px; /* Smaller image height on phone */
+  }
 }
 

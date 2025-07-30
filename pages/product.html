@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Place an Order</title>
-  <link rel="stylesheet" href="../css/product.css">
-  <link rel="stylesheet" href="../css/navbar.css"> 
-</head>
-<body>
-  <script type="module">
-    import { insertNavbar } from '../functions/navbar.js'; // Adjust path if navbar.js is in a different folder
-    insertNavbar();
-</script>
-  <div id="image-modal" class="modal">
-    <span class="close-btn">&times;</span>
-    <img class="modal-content" id="modal-image">
-  </div>
-  <div class="container">
-    <p id="loader">Loading...</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place an Order</title>
     
-    <div id="product-container"></div>
-    <div id="order-form-container"></div>
+    <base href="/maybe-the-finale-/"> 
+    
+    <link rel="stylesheet" href="/css/product.css">  <link rel="stylesheet" href="/css/navbar.css">   </head>
+<body>
+    <script type="module">
+        // Import path also needs to be ROOT-RELATIVE
+        import { insertNavbar } from '/functions/navbar.js'; // CORRECTED: Added /
+        insertNavbar();
+    </script>
+    <div id="image-modal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+    <div class="container">
+        <p id="loader">Loading...</p>
+        
+        <div id="product-container"></div>
+        <div id="order-form-container"></div>
 
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script type="module" src="../functions/product.js" defer></script>
-</body>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="/functions/product.js" defer></script> </body>
 </html>
