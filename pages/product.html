@@ -7,11 +7,12 @@
     
     <base href="/maybe-the-finale-/"> 
     
-    <link rel="stylesheet" href="/css/product.css">  <link rel="stylesheet" href="/css/navbar.css">   </head>
+    <link rel="stylesheet" href="/css/product.css"> 
+    <link rel="stylesheet" href="/css/navbar.css"> 
+</head>
 <body>
     <script type="module">
-        // Import path also needs to be ROOT-RELATIVE
-        import { insertNavbar } from '/functions/navbar.js'; // CORRECTED: Added /
+        import { insertNavbar } from '/functions/navbar.js';
         insertNavbar();
     </script>
     <div id="image-modal" class="modal">
@@ -26,5 +27,6 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="module" src="/functions/product.js" defer></script> </body>
+    <script type="module" src="/functions/product.js" defer></script> 
+</body>
 </html>

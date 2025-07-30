@@ -7,11 +7,11 @@
     
     <base href="/maybe-the-finale-/"> 
     
-    <link rel="stylesheet" href="/css/orders-admin.css">  <link rel="stylesheet" href="/css/navbar.css">   </head>
+    <link rel="stylesheet" href="/css/admin.css"> <link rel="stylesheet" href="/css/navbar.css"> 
+</head>
 <body>
     <script type="module">
-        // Import path also needs to be ROOT-RELATIVE
-        import { insertNavbar } from '/functions/navbar.js'; // CORRECTED: Added /
+        import { insertNavbar } from '/functions/navbar.js';
         insertNavbar();
     </script>
 
@@ -48,12 +48,13 @@
                         </tr>
                     </thead>
                     <tbody id="orders-tbody">
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
         <p class="back-link"><a href="index.html">Back to Home</a></p> 
     </div>
 
-    <script type="module" src="/functions/orders-admin.js"></script> </body>
+    <script type="module" src="/functions/orders-admin.js"></script> 
+</body>
 </html>
