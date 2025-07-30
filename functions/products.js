@@ -5,8 +5,8 @@ const localProducts = [
       price: 25.99,
       description: 'A comfortable and stylish t-shirt made from 100% cotton.',
       image_url: [
-        '/images/id=1/2.jpg',
-        '/images/id=1/1.jpg' // Make sure you have an 'images' folder
+        '../images/id=1/2.jpg',
+        '../images/id=1/1.jpg' // Make sure you have an 'images' folder
       ]
     },
     {
@@ -15,8 +15,8 @@ const localProducts = [
       price: 79.50,
       description: 'High-quality denim jeans perfect for any occasion.',
       image_url: [
-        '/images/id=2/2.jpg',
-        '/images/id=2/1.jpg' 
+        '../images/id=2/2.jpg',
+        '../images/id=2/1.jpg' 
       ]
     },
     {
@@ -25,8 +25,8 @@ const localProducts = [
       price: 45.00,
       description: 'A sleek and minimalist wallet, crafted from genuine leather with multiple card slots.',
       image_url: [
-        `/images/id=3/2.jpg`,
-        `/images/id=3/1.jpg` 
+        `../images/id=3/2.jpg`,
+        `../images/id=3/1.jpg` 
       ] // Add image paths here
     },
     {
@@ -35,8 +35,8 @@ const localProducts = [
       price: 120.00,
       description: 'Experience high-fidelity sound with these over-ear headphones, featuring noise cancellation and a 20-hour battery life.',
       image_url: [
-        `/images/id=4/2.jpg`,
-        `/images/id=4/1.jpg` 
+        `../images/id=4/2.jpg`,
+        `../images/id=4/1.jpg` 
       ] // Add image paths here
     },
     {
@@ -45,8 +45,8 @@ const localProducts = [
       price: 250.00,
       description: 'A classic timepiece with a stainless steel band and a sapphire crystal face. Water-resistant up to 50 meters.',
       image_url: [
-        `/images/id=5/2.jpg`,
-        `/images/id=5/1.jpg` 
+        `../images/id=5/2.jpg`,
+        `../images/id=5/1.jpg` 
       ] // Add image paths here
     },
     {
@@ -55,8 +55,8 @@ const localProducts = [
       price: 65.50,
       description: 'Durable and spacious backpack with a padded laptop compartment, perfect for daily commutes or travel.',
       image_url: [
-        `/images/id=6/2.jpg`,
-        `/images/id=6/1.jpg` 
+        `../images/id=6/2.jpg`,
+        `../images/id=6/1.jpg` 
       ] // Add image paths here
     },
     {
@@ -65,8 +65,8 @@ const localProducts = [
       price: 85.00,
       description: 'Protect your eyes with style. These sunglasses feature 100% UV protection and polarized lenses to reduce glare.',
       image_url: [
-        `/images/id=7/2.jpg`,
-        `/images/id=7/1.jpg` 
+        `../images/id=7/2.jpg`,
+        `../images/id=7/1.jpg` 
       ] // Add image paths here
     }
   ];

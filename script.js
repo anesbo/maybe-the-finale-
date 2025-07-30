@@ -28,9 +28,8 @@ function displayProducts() {
         // ✅ FIX: Correct the image path for the main page
         // Check if images exist, then make it root-relative
         const imageUrl = (product.image_url && product.image_url.length > 0)
-            ? '/' + product.image_url[0].replace('../', '') // CORRECTED: Added / and removed '../' as it's root relative now
+            ? '/' + product.image_url[0].replace(/^\/+/g, '').replace(/\.\.\//g, '') 
             : 'https://placehold.co/600x400?text=No+Image';
-
         // Apply word truncation to the product description
         const truncatedDescription = truncateWords(product.description, MAX_DESCRIPTION_WORDS_LISTING);
 
