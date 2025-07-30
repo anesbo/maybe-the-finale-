@@ -1,0 +1,188 @@
+/* --- Base Navbar Styles --- */
+.navbar {
+    background-color: #1a1a1a; /* Very dark grey/black */
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between; /* Puts store name left, links right */
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px; /* Space below the navbar */
+    position: sticky; /* Makes navbar stick to top on scroll */
+    top: 0;
+    z-index: 1000; /* Ensures it's above other content */
+}
+
+.store-name {
+    font-family: prompt 700, serif; /* A more classic font */
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #f9f9f9; /* Gold color for store name */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Styles for the desktop navigation links */
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex; /* For horizontal layout */
+    gap: 25px; /* Space between links */
+}
+
+.nav-links li a {
+    text-decoration: none; /* Remove underline */
+    color: rgb(255, 255, 255);
+    width: auto; /* Allow links to size based on content */
+    background-color: #1d1d1d;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active { /* 'active' class is added by JS for the current page */
+    color: #6b6b6b; /* Gold on hover */
+    background-color: rgba(213, 213, 213, 0.621); /* Subtle background on hover */
+}
+
+
+/* --- Hamburger Icon & Mobile Menu Styles --- */
+
+.hamburger-icon {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Ensure it's above other content */
+}
+
+.hamburger-icon .bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Menu Styles (starts hidden on all screens by default via 'right' and 'visibility') */
+.mobile-nav {
+    flex-direction: column;
+    position: fixed;
+    top: 0; /* Aligned to the top of the viewport */
+    right: -250px; /* Initially hidden off-screen to the right */
+    width: 250px;
+    height: 100%; /* Full viewport height */
+    background-color: #ffffff8f; /* Darker background for sidebar */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+    padding-top: 60px; /* Space to push content below the main navbar area */
+    align-items: flex-start; /* Align links to the left */
+    list-style: none; /* Remove list bullets */
+    margin: 0;
+    padding-left: 20px; /* Indent links slightly */
+    z-index: 999; /* Below hamburger icon, above main content */
+
+    /* Transition properties for smooth animation */
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Don't allow interaction when hidden */
+    transition: right 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+
+    /* Ensure vertical scrolling within the sidebar if content is long */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+
+    /* Initially not participating in layout on desktop, will be overridden by media query */
+    display: none; 
+}
+
+.mobile-nav.is-open {
+    right: 0;        /* Slide in when open */
+    opacity: 1;      /* Fully visible */
+    visibility: visible; /* Allow interaction */
+}
+
+.mobile-nav li {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.mobile-nav li a {
+    color: rgb(255, 255, 255);
+    padding-left: 5px;
+    padding: 10px 5px;
+    font-size: 1.2em;
+    display: block; /* Make links full width of list item */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav li:last-child a {
+    border-bottom: none;
+}
+
+/* Overlay that darkens background when mobile menu is open */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.297); /* Semi-transparent black */
+    z-index: 998; /* Below mobile nav */
+    backdrop-filter: blur(2px); /* Optional blur effect */
+
+    /* Transition and Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    /* Initially not participating in layout on desktop */
+    display: none; 
+}
+
+.mobile-menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Prevent scrolling of body when mobile menu is open */
+body.no-scroll {
+    overflow: hidden;
+    overflow-x: hidden; /* Explicitly hide horizontal overflow to prevent flicker */
+}
+
+/* Optional: Hamburger icon animation when open */
+.hamburger-icon.is-open .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+.hamburger-icon.is-open .bar:nth-child(2) { opacity: 0; }
+.hamburger-icon.is-open .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+/* --- Media Query for Mobile (less than 768px wide) --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; /* Keep hamburger and store name on one line */
+        justify-content: space-between; /* Store name left, hamburger right */
+    }
+
+    .desktop-nav {
+        display: none; /* Hide desktop nav links on small screens */
+    }
+
+    .hamburger-icon {
+        display: flex;
+    }
+
+    /* Make mobile-nav and overlay participate in layout on mobile */
+    .mobile-nav {
+        display: flex; 
+        padding-top: 100px;
+    }
+    .mobile-menu-overlay {
+        display: block; 
+    }
+}

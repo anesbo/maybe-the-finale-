@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Prices Admin</title>
+    <link rel="stylesheet" href="../css/delivery-admin.css">
+    <style>
+        /* These styles should be in admin.css now */
+        #initial-loading-message {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.5em; color: #333; z-index: 2000; flex-direction: column;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #4CAF50;
+            border-radius: 50%; width: 30px; height: 30px;
+            animation: spin 1s linear infinite; margin-top: 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #main-admin-content { display: none; }
+    </style>
+</head>
+<body>
+    <div id="initial-loading-message">
+        <p>Checking admin access...</p>
+        <div class="spinner"></div>
+    </div>
+
+    <div id="main-admin-content" class="container">
+        <h1>Manage Delivery Prices</h1>
+
+        <nav class="admin-nav">
+            <a href="delivery-prices-admin.html" class="active">Delivery Prices</a>
+            <a href="orders-admin.html">Customer Orders</a>
+        </nav>
+
+        <div class="admin-section">
+            <div id="loading-message-prices" class="loading">Loading delivery prices...</div>
+            <div id="delivery-table-container" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Wilaya (EN)</th>
+                            <th>Desk Price (DZD)</th>
+                            <th>Home Price (DZD)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="delivery-prices-tbody">
+                        </tbody>
+                </table>
+            </div>
+
+            <div id="edit-form-container" style="display: none;">
+                <h3>Edit Price for <span id="edit-wilaya-name"></span></h3>
+                <form id="edit-delivery-form">
+                    <input type="hidden" id="edit-id-input">
+                    <input type="hidden" id="edit-wilaya-en">
+
+                    <div class="form-group">
+                        <label for="edit-price-desk">Desk Price (DZD):</label>
+                        <input type="number" id="edit-price-desk" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-price-home">Home Price (DZD):</label>
+                        <input type="number" id="edit-price-home" step="0.01" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="save-price-btn">Save Changes</button>
+                        <button type="button" id="cancel-edit-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p class="back-link"><a href="index.html">Back to Home</a></p>
+        </div>
+
+    <script type="module" src="../functions/delivery-admin.js"></script>
+</body>
+</html>

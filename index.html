@@ -3,8 +3,13 @@
 <head>
     <title>My Store</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/navbar.css"> 
 </head>
 <body>
+    <script type="module">
+        import { insertNavbar } from './functions/navbar.js'; // Adjust path if navbar.js is in a different folder
+        insertNavbar();
+    </script>
     <div id="products-container"></div>
     <p id="loader">Loading...</p>
 
