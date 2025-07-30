@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Store</title> 
     
-    <link rel="stylesheet" href="style.css">       
-    <link rel="stylesheet" href="css/navbar.css"> 
+    <link rel="stylesheet" href="/style.css">       
+    <link rel="stylesheet" href="/css/navbar.css"> 
 </head>
 <body>
     <script type="module">
         // Import path is relative to THIS FILE (index.html)
-        import { insertNavbar } from './functions/navbar.js'; 
+        import { insertNavbar } from '/functions/navbar.js'; 
         insertNavbar();
     </script>
     
     <div id="products-container"></div>
     <p id="loader">Loading...</p>
 
-    <script src="functions/products.js"></script> 
-    <script src="script.js" defer></script> 
+    <script src="/functions/products.js"></script> 
+
+    <script src="/script.js" defer></script> 
 </body>
 </html>
