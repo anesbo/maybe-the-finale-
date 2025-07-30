@@ -86,7 +86,7 @@ async function checkAuthAndLoad() {
         initialLoadingMessage.querySelector('p').textContent = 'Profile missing. Logging out...';
         initialLoadingMessage.querySelector('.spinner').style.display = 'none';
         await supabase.auth.signOut();
-        setTimeout(() => { window.location.href = 'admin-login.html'; }, 1000);
+        setTimeout(() => { window.location.href = '/admin-login.html'; }, 1000);
         return;
     }
 
@@ -98,7 +98,7 @@ async function checkAuthAndLoad() {
         initialLoadingMessage.querySelector('p').textContent = 'Access Denied. Logging out...';
         initialLoadingMessage.querySelector('.spinner').style.display = 'none';
         await supabase.auth.signOut();
-        setTimeout(() => { window.location.href = 'admin-login.html'; }, 1000);
+        setTimeout(() => { window.location.href = '/admin-login.html'; }, 1000);
         return;
     }
 
@@ -133,7 +133,7 @@ async function checkAuthAndLoad() {
             console.error('Logout error:', error);
             alert('Failed to log out. Please try again.');
         } else {
-            window.location.href = 'admin-login.html';
+            window.location.href = '/admin-login.html';
         }
     });
     document.body.appendChild(logoutBtn);
