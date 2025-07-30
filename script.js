@@ -45,7 +45,7 @@ function displayProducts() {
       // This part saves data for the next page
       card.addEventListener('click', () => {
           sessionStorage.setItem('selectedProduct', JSON.stringify(product));
-          window.location.href = './pages/product.html'; // Ensure this path is correct relative to index.html
+          window.location.href = './product.html'; // Ensure this path is correct relative to index.html
       });
 
       productsContainer.appendChild(card);
