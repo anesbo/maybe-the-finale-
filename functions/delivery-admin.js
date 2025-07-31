@@ -115,7 +115,7 @@ async function checkAuthAndLoad() {
     logoutBtn.textContent = 'Log Out';
     logoutBtn.style.cssText = `
         position: absolute;
-        top: 20px;
+        top: 100px;
         right: 20px;
         padding: 10px 15px;
         background-color: #dc3545;

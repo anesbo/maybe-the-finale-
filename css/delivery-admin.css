@@ -2,10 +2,10 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f7f6;
     margin: 0;
-    padding: 20px;
     color: #333;
     line-height: 1.6;
     position: relative; /* Needed for absolute positioning of logout button */
+ 
 }
 
 .container {
@@ -251,56 +251,70 @@ hr {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    th, td {
-        padding: 10px;
-    }
-    td button {
-        padding: 6px 10px;
-    }
-    .form-group input[type="number"],
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="password"],
-    .form-group input[type="tel"] {
-        width: calc(100% - 20px);
-    }
-    .form-actions button {
-        width: 100%;
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
+    /* --- Hide the original table headers --- */
     table thead {
-        display: none; /* Hide table headers on small screens */
+        display: none;
     }
 
+    /* --- Make table elements stack vertically --- */
     table, tbody, tr, td {
-        display: block; /* Make table elements behave like blocks */
-        width: 100%;
+        display: block;
     }
 
+    /* --- Style each row as a card --- */
     tr {
         margin-bottom: 15px;
-        border: 1px solid #ddd;
+        border: 1px solid #e0e0e0;
         border-radius: 8px;
-        overflow: hidden; /* For border-radius to apply */
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     td {
-        text-align: right;
-        padding-left: 50%; /* Make space for pseudo-element labels */
+        /* Align data to the right, and add a bottom border for separation */
+        text-align: center;
         position: relative;
+        padding: 12px;
+        border-bottom: 1px solid #f0f0f0;
     }
 
+    tr td:last-child {
+        border-bottom: none; /* Remove border from the last cell in a card */
+    }
+
+    /* --- Create the data labels from 'data-label' attributes --- */
     td::before {
-        content: attr(data-label);
+        content: attr(data-label); /* This reads the data-label from your HTML */
         position: absolute;
-        left: 10px;
-        width: calc(50% - 20px);
+        left: 12px;
+        width: 40%;
         text-align: left;
         font-weight: bold;
-        color: #555;
+        color: #333;
+    }
+
+    /* --- Actions Cell: Special Handling --- */
+    /* Target the cell with the buttons specifically */
+    td[data-label="Actions"] {
+        text-align: left; /* Align buttons to the left */
+        padding: 10px; /* Reset padding */
+        background-color: #f9f9f9;
+    }
+
+    /* Hide the "Actions:" label since it's obvious */
+    td[data-label="Actions"]::before {
+        display: none; 
+    }
+    
+    /* Use flexbox for better button alignment */
+    td[data-label="Actions"] {
+        display: flex;
+        flex-wrap: wrap; /* Allow buttons to wrap on very small screens */
+        gap: 8px; /* Space between buttons */
+    }
+
+    td[data-label="Actions"] button {
+        flex-grow: 1; /* Allow buttons to grow and fill space */
+        padding: 8px 10px;
     }
 }

@@ -6,7 +6,7 @@
     <title>Customer Orders Admin</title>
 
     
-    <link rel="stylesheet" href="/css/admin.css"> <link rel="stylesheet" href="/css/navbar.css"> 
+    <link rel="stylesheet" href="/css/orders-admin.css"> <link rel="stylesheet" href="/css/navbar.css"> 
 </head>
 <body>
     <script type="module">
@@ -16,7 +16,26 @@
 
     <div id="initial-loading-message">
         <p>Checking admin access...</p>
-        <div class="spinner"></div>
+        <div cl
+        ass="spinner"></div>
+    </div>
+    <div class="stats-container">
+        <div class="stat-card">
+            <h4>Pending Orders</h4>
+            <p id="stats-pending">0</p>
+        </div>
+        <div class="stat-card">
+            <h4>Shipped Orders</h4>
+            <p id="stats-shipped">0</p>
+        </div>
+        <div class="stat-card">
+            <h4>Delivered Orders</h4>
+            <p id="stats-delivered">0</p>
+        </div>
+        <div class="stat-card">
+            <h4>Canceled Orders</h4>
+            <p id="stats-canceled">0</p>
+        </div>
     </div>
 
     <div id="main-admin-content" class="container">
@@ -25,8 +44,18 @@
         <nav class="admin-nav">
             <a href="/delivery-admin.html">Delivery Prices</a>
             <a href="/orders-admin.html" class="active">Customer Orders</a>
+            <select id="statusFilter"  >
+                <option value="">Show All</option>
+                <option value="pending">Pending</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Canceled">Canceled</option>
+            </select>
         </nav>
 
+        
+
+          
         <div class="admin-section">
             <div id="loading-message-orders" class="loading">Loading orders...</div>
             <div id="orders-table-container" style="display: none;">
@@ -53,6 +82,10 @@
         </div>
         <p class="back-link"><a href="/index.html">Back to Home</a></p> 
     </div>
+    <script>
+       
+
+    </script>
 
     <script type="module" src="/functions/orders-admin.js"></script> 
 </body>

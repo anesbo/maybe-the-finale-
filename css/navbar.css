@@ -26,7 +26,6 @@
 .nav-links {
     list-style: none; /* Remove bullet points */
     margin: 0;
-    padding: 0;
     display: flex; /* For horizontal layout */
     gap: 25px; /* Space between links */
 }
@@ -37,15 +36,15 @@
     width: auto; /* Allow links to size based on content */
     background-color: #1d1d1d;
     font-size: 1.1em;
-    padding: 5px 10px;
+    padding: 5px 15px;
     transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .nav-links li a:hover,
 .nav-links li a.active { /* 'active' class is added by JS for the current page */
-    color: #6b6b6b; /* Gold on hover */
-    background-color: rgba(213, 213, 213, 0.621); /* Subtle background on hover */
+    color: #000000; /* Gold on hover */
+    background-color: rgb(255, 255, 255); /* Subtle background on hover */
 }
 
 
@@ -109,14 +108,14 @@
 }
 
 .mobile-nav li {
-    width: 100%;
-    margin-bottom: 10px;
+    width: 96%;
 }
 
 .mobile-nav li a {
     color: rgb(255, 255, 255);
     padding-left: 5px;
-    padding: 10px 5px;
+    padding: 10px 15px;
+    border-radius: 9px;
     font-size: 1.2em;
     display: block; /* Make links full width of list item */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -167,14 +166,20 @@ body.no-scroll {
     .navbar {
         flex-direction: row; /* Keep hamburger and store name on one line */
         justify-content: space-between; /* Store name left, hamburger right */
+        padding: 5px 10px; /* Hide desktop nav links on small screens */
     }
-
+    .store-name{
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
     .desktop-nav {
         display: none; /* Hide desktop nav links on small screens */
     }
 
     .hamburger-icon {
         display: flex;
+        height: 20px;
+        width: 27px;
     }
 
     /* Make mobile-nav and overlay participate in layout on mobile */
@@ -185,4 +190,85 @@ body.no-scroll {
     .mobile-menu-overlay {
         display: block; 
     }
+}
+
+
+
+/* --- Main Footer Styling --- */
+.site-footer {
+    background-color: #000000; /* Dark background */
+    color: #cacaca;   
+    margin-top: 10px;         
+    font-size: 15px;
+    padding-top: 30px;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-section {
+    padding: 10px;
+    min-width: 250px;
+}
+
+.footer-section h4 {
+    color: #ffffff;
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #2a2a2a; /* Highlight color for headings */
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* --- Links and Contact Sections --- */
+.footer-links a {
+    color: #a9a9a9;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ffffff; /* Brighter color on hover */
+}
+
+.footer-contact p {
+    margin: 0;
+}
+
+/* --- Copyright Bar --- */
+.footer-copyright {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+    background-color: #111111; /* Slightly darker for contrast */
+    font-size: 0.9em;
+}
+
+/* --- Responsive Design for Smaller Screens --- */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.footer-icon{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    vertical-align: middle; /* Aligns the icon with the text */
+    color: #2a2a2a;
 }

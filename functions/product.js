@@ -42,8 +42,6 @@ function setupPage() {
 
     document.title = product.name;
     productContainer.innerHTML = `
-      <a href="/index.html">home page</a>
-      <p> click the image to make it bigger</p>
       <div class="product-details">
         <div class="product-gallery">
           <img src="${product.image_url[0]}" alt="${product.name}" class="main-image" id="main-image">
@@ -173,7 +171,6 @@ function setupPage() {
                 deliveryCost = stateData.price_for_home;
             }
 
-            const codPrice = stateData.price_cod_dzd; // This is already parsed to a number or 0
 
             const totalProductCost = productPrice * quantity;
             const finalPrice = totalProductCost + deliveryCost;
@@ -213,7 +210,6 @@ function setupPage() {
         const productPrice = parseFloat(product.price); // Ensure product.price is parsed here too
 
         let deliveryCost = 0;
-        let codPrice = 0;
         const stateData = deliveryPrices.find(w => w.wilaya_en === selectedState);
         if (stateData) {
             if (deliveryType === 'Desk') {
@@ -221,18 +217,16 @@ function setupPage() {
             } else if (deliveryType === 'Home') {
                 deliveryCost = stateData.price_for_home;
             }
-            codPrice = stateData.price_cod_dzd;
         }
 
         const productTotalPrice = productPrice * quantity;
-        const finalCalculatedPrice = productTotalPrice + deliveryCost + codPrice;
+        const finalCalculatedPrice = productTotalPrice + deliveryCost;
 
         const orderData = {
             name: document.getElementById('name').value,
             phoneNumber: document.getElementById('phoneNumber').value,
             state: selectedState,
             address: document.getElementById('deliveryHome').checked ? document.getElementById('address').value : 'Delivery to Desk',
-            delivery_type: deliveryType,
             product_id: product.id,
             product_name: product.name,
             quantity: quantity,

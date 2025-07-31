@@ -19,7 +19,12 @@
     <p id="loader">Loading...</p>
 
     <script src="/functions/products.js"></script> 
-
     <script src="/script.js" defer></script> 
+    <script type="module">
+        import { insertFooter } from '/functions/footer.js';
+        
+        insertFooter();
+    </script>
+    <footer id="footer-placeholder"></footer>
 </body>
 </html>

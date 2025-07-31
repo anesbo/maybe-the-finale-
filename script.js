@@ -18,7 +18,7 @@ function displayProducts() {
     loader.style.display = 'none';
 
     // Define the maximum word limit for descriptions on this product listing page
-    const MAX_DESCRIPTION_WORDS_LISTING = 20; // You can adjust this value as needed
+    const MAX_DESCRIPTION_WORDS_LISTING = 10; // You can adjust this value as needed
 
     // Loop through the localProducts array (assuming localProducts is defined elsewhere)
     localProducts.forEach(product => {
@@ -37,8 +37,8 @@ function displayProducts() {
             <img src="${imageUrl}" alt="${product.name}">
             <div class="product-info">
                 <h2>${product.name}</h2>
+                 <p class="price">${product.price} DA</p>
                 <p>${truncatedDescription}</p> 
-                <p class="price">${product.price} DA</p>
             </div>
         `;
 
