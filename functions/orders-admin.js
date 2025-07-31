@@ -186,14 +186,20 @@ async function checkAuthAndLoad() {
     await fetchAndDisplayStats();
 
     // Setup logout button
-    const logoutBtn = document.createElement('button');
-    logoutBtn.textContent = 'Log Out';
-    logoutBtn.style.cssText = `position: absolute; top: 20px; right: 20px; padding: 10px 15px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2);`;
+    const logoutBtn = document.getElementById('logout-button');
+
+// Add the logout functionality to it
+if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
-        await supabase.auth.signOut();
-        window.location.href = 'admin-login.html';
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            console.error('Logout error:', error);
+            alert('Failed to log out. Please try again.');
+        } else {
+            window.location.href = '/admin-login.html';
+        }
     });
-    document.body.appendChild(logoutBtn);
+}
 }
 
 

@@ -112,21 +112,10 @@ async function checkAuthAndLoad() {
     await fetchDeliveryPrices();
 
     // Add logout button to the page (only if authenticated and admin)
-    logoutBtn.textContent = 'Log Out';
-    logoutBtn.style.cssText = `
-        position: absolute;
-        top: 100px;
-        right: 20px;
-        padding: 10px 15px;
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 0.9em;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    `;
+    const logoutBtn = document.getElementById('logout-button');
+
+// Add the logout functionality to it
+if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -136,7 +125,7 @@ async function checkAuthAndLoad() {
             window.location.href = '/admin-login.html';
         }
     });
-    document.body.appendChild(logoutBtn);
+}
 }
 
 /**
@@ -176,6 +165,11 @@ async function fetchDeliveryPrices() {
  * Renders the delivery prices into the HTML table.
  * @param {Array} prices - The array of delivery price objects.
  */
+/**
+ * Renders the delivery prices into the HTML table.
+ * This version adds the required 'data-label' attributes for responsive CSS.
+ * @param {Array} prices - The array of delivery price objects.
+ */
 function renderDeliveryPricesTable(prices) {
     deliveryPricesTbody.innerHTML = ''; // Clear existing rows
 
@@ -186,17 +180,34 @@ function renderDeliveryPricesTable(prices) {
 
     prices.forEach(price => {
         const row = deliveryPricesTbody.insertRow();
-        row.dataset.id = price.id; // Store 'id' for easy lookup
+        row.dataset.id = price.id;
 
-        row.insertCell().textContent = price.id; // Display ID
-        row.insertCell().textContent = price.wilaya_en;
-        row.insertCell().textContent = price.price_for_desk.toFixed(2);
-        row.insertCell().textContent = price.price_for_home.toFixed(2);
+        // Create ID Cell with data-label
+        const idCell = row.insertCell();
+        idCell.dataset.label = 'ID';
+        idCell.textContent = price.id;
 
+        // Create Wilaya Cell with data-label
+        const wilayaCell = row.insertCell();
+        wilayaCell.dataset.label = 'Wilaya';
+        wilayaCell.textContent = price.wilaya_en;
+
+        // Create Desk Price Cell with data-label
+        const deskCell = row.insertCell();
+        deskCell.dataset.label = 'Desk Price';
+        deskCell.textContent = price.price_for_desk.toFixed(2);
+
+        // Create Home Price Cell with data-label
+        const homeCell = row.insertCell();
+        homeCell.dataset.label = 'Home Price';
+        homeCell.textContent = price.price_for_home.toFixed(2);
+
+        // Create Actions Cell with data-label
         const actionsCell = row.insertCell();
+        actionsCell.dataset.label = 'Actions';
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
-        editButton.addEventListener('click', () => openEditForm(price.id)); // Pass 'id' to edit form
+        editButton.addEventListener('click', () => openEditForm(price.id));
         actionsCell.appendChild(editButton);
     });
 }

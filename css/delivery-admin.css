@@ -7,6 +7,29 @@ body {
     position: relative; /* Needed for absolute positioning of logout button */
  
 }
+.logout-div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .logout-btn {
+    /* Sizing and Spacing */
+    padding: 8px 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    /* Appearance */
+    background-color: #dc3545; /* A standard red color */
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  
+    /* Interactivity */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
 
 .container {
     max-width: 1000px;
@@ -55,13 +78,14 @@ h1, h2, h3 {
 
 /* Navigation for Admin Pages */
 .admin-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+    gap: 16px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
 
 .admin-nav a {
     text-decoration: none;
@@ -251,14 +275,21 @@ hr {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    /* --- Hide the original table headers --- */
+    /* --- Hide the original table headers (This is intentional) --- */
     table thead {
         display: none;
     }
 
     /* --- Make table elements stack vertically --- */
-    table, tbody, tr, td {
+    table, tbody, tr {
         display: block;
+        width: 100%;
+    }
+    
+    td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box; /* Important for padding and width to work together */
     }
 
     /* --- Style each row as a card --- */
@@ -267,37 +298,38 @@ hr {
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
+    /* --- General Data Cells --- */
     td {
-        /* Align data to the right, and add a bottom border for separation */
-        text-align: center;
         position: relative;
         padding: 12px;
+        padding-left: 50%; /* Make space for the label on the left */
+        text-align: right;  /* FIXED: Aligns data to the right for better layout */
         border-bottom: 1px solid #f0f0f0;
     }
 
     tr td:last-child {
-        border-bottom: none; /* Remove border from the last cell in a card */
+        border-bottom: none;
     }
 
     /* --- Create the data labels from 'data-label' attributes --- */
     td::before {
-        content: attr(data-label); /* This reads the data-label from your HTML */
+        content: attr(data-label);
         position: absolute;
         left: 12px;
-        width: 40%;
+        width: calc(50% - 24px); /* Adjusted width to account for padding */
         text-align: left;
         font-weight: bold;
         color: #333;
     }
 
-    /* --- Actions Cell: Special Handling --- */
-    /* Target the cell with the buttons specifically */
+    /* --- Actions Cell: Special Handling (COMBINED rules) --- */
     td[data-label="Actions"] {
-        text-align: left; /* Align buttons to the left */
-        padding: 10px; /* Reset padding */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
         background-color: #f9f9f9;
     }
 
@@ -306,15 +338,9 @@ hr {
         display: none; 
     }
     
-    /* Use flexbox for better button alignment */
-    td[data-label="Actions"] {
-        display: flex;
-        flex-wrap: wrap; /* Allow buttons to wrap on very small screens */
-        gap: 8px; /* Space between buttons */
-    }
-
+    td[data-label="Actions"] select,
     td[data-label="Actions"] button {
-        flex-grow: 1; /* Allow buttons to grow and fill space */
+        flex-grow: 1; /* Allow controls to grow and fill space */
         padding: 8px 10px;
     }
 }

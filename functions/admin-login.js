@@ -34,7 +34,7 @@ loginForm.addEventListener('submit', async (event) => {
         console.error('Login error:', error);
     } else {
         console.log('User logged in:', data.user);
-        window.location.href = '/delivery-admin.html'; // Redirect to admin page on success
+        window.location.href = '/orders-admin.html'; // Redirect to admin page on success
     }
 });
 
@@ -42,6 +42,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
         console.log('Already logged in, redirecting to admin page.');
-        window.location.href = '/delivery-admin.html';
+        window.location.href = '/oeders-admin.html';
     }
 });

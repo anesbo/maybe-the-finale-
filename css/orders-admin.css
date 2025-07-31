@@ -1,151 +1,48 @@
+/* General Body and Container */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f8fafc;
-    margin: 0;
-  }
-  
-  .container {
-    max-width: 1600px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    color: #1e293b;
-    margin-top: 0;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  th, td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  
-  th {
-    background-color: #f1f5f9;
-    font-weight: 600;
-    color: #475569;
-  }
-  
-  tr:hover {
-    background-color: #f8fafc;
-  }
-  /* Add this to the end of your orders-admin.css file */
-
-/* --- Responsive Styles for Mobile --- */
-@media (max-width: 768px) {
-  table {
-    border: 0;
-  }
-
-  /* Hide the table header */
-  table thead {
-    display: none;
-  }
-
-  /* Make each row look like a card */
-  table tr {
-    display: block;
-    margin-bottom: 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 5px;
-  }
-
-  /* Make each cell a full-width block */
-  table td {
-    display: block;
-    text-align: right; /* Align data to the right */
-    border-bottom: 1px dotted #ccc;
-    padding-left: 50%; /* Make space for the label */
-    position: relative;
-  }
-
-  /* Add the header label before each cell */
-  table td::before {
-    content: attr(data-label); /* Use the data-label attribute as content */
-    position: absolute;
-    left: 10px;
-    font-weight: bold;
-    text-align: left;
-  }
-
-  /* Style the action buttons to stack nicely */
-  table td:last-child {
-    border-bottom: 0;
-  }
-  
-  table td button {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px;
-  }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f8fafc;
+  margin: 0;
 }
-/* Add these to your admin.css file (or wherever your main admin styles are) */
+.logout-div{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.logout-btn {
+  /* Sizing and Spacing */
+  padding: 8px 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  /* Appearance */
+  background-color: #dc3545; /* A standard red color */
+  color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 
-/* Initial Loading Overlay */
-#initial-loading-message {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex; justify-content: center; align-items: center;
-  font-size: 1.5em; color: #333; z-index: 2000; flex-direction: column;
-}
-.spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #4CAF50;
-  border-radius: 50%; width: 30px; height: 30px;
-  animation: spin 1s linear infinite; margin-top: 10px;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-#main-admin-content { display: none; }
-
-/* Specific styles for the orders table buttons */
-td button {
-  margin-right: 5px; /* Space out buttons */
-}
-.statusFilter {
-  /* Reset default browser styles */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  
-  /* Custom styles */
-  display: inline-block;
-  padding: 10px 35px 10px 15px; /* Right padding for the arrow */
-  font-size: 1em;
-  font-family: inherit; /* Use the same font as the rest of the page */
-  color: #333;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  /* Interactivity */
   cursor: pointer;
-  
-  /* Custom dropdown arrow using an SVG background image */
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px 12px;
+  transition: background-color 0.2s ease-in-out;
 }
 
-/* Style for when the dropdown is focused (clicked on) */
-.statusFilter:focus {
-  border-color: #007bff; /* A highlight color */
-  outline: none; /* Remove the default blue glow */
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+.logout-btn:hover {
+  background-color: #c82333; /* A darker red on hover */
 }
-
-/* Style for when hovering over the dropdown */
-.statusFilter:hover {
-  border-color: #888;
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-/* Add these to your admin.css file (or wherever your main admin styles are) */
+h1 {
+  color: #1e293b;
+  margin-top: 0;
+}
 
 /* Initial Loading Overlay */
 #initial-loading-message {
@@ -161,6 +58,17 @@ td button {
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 #main-admin-content { display: none; }
+
+/* Admin Navigation */
+.admin-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+  gap: 16px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
 .admin-nav a {
   text-decoration: none;
   color: #007bff;
@@ -169,100 +77,132 @@ td button {
   border-radius: 5px;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-.admin-nav a.active {
+.admin-nav a.active, .admin-nav a:hover {
   background-color: #007bff;
   color: white;
 }
-.admin-nav a:hover {
-  background-color: #e9f5ff;
-  color: #0056b3;
-}
-/* --- Filter Dropdown Styling --- */
 
-/* The container for the label and select for alignment */
-.filter-container {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.filter-container label {
-  font-size: 1em;
-  font-weight: 500;
-  color: #333;
-}
-
-/* The <select> element itself */
-#statusFilter {
-  /* Reset default browser styles */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  
-  /* Custom styles */
-  display: inline-block;
-  padding: 10px 35px 10px 15px; /* Right padding for the arrow */
-  font-size: 1em;
-  font-family: inherit; /* Use the same font as the rest of the page */
-  color: #333;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  cursor: pointer;
-  
-  /* Custom dropdown arrow using an SVG background image */
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px 12px;
-}
-
-/* Style for when the dropdown is focused (clicked on) */
-#statusFilter:focus {
-  border-color: #007bff; /* A highlight color */
-  outline: none; /* Remove the default blue glow */
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-/* Style for when hovering over the dropdown */
-#statusFilter:hover {
-  border-color: #888;
-}
-
-/* --- Statistics Section Styling --- */
+/* Statistics Section */
 .stats-container {
-  margin: 20px 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   margin-bottom: 30px;
 }
-
 .stat-card {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   text-align: center;
-  border-left: 5px solid #007bff; /* Accent color */
+  border-left: 5px solid #007bff;
 }
-
 .stat-card h4 {
   margin: 0 0 10px 0;
   font-size: 1em;
   color: #555;
   font-weight: 600;
 }
-
 .stat-card p {
   margin: 0;
   font-size: 2.2em;
   font-weight: 700;
   color: #333;
 }
+.stat-card:nth-child(2) { border-color: #28a745; }
+.stat-card:nth-child(3) { border-color: #17a2b8; }
+.stat-card:nth-child(4) { border-color: #dc3545; }
 
-/* Different accent colors for each card */
-.stat-card:nth-child(2) { border-color: #28a745; } /* Delivered */
-.stat-card:nth-child(3) { border-color: #17a2b8; } /* Delivered Today */
-.stat-card:nth-child(4) { border-color: #dc3545; } /* Canceled */
+/* Filters */
+.filter-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.filter-container label {
+  font-size: 1em;
+  font-weight: 500;
+  color: #333;
+}
+.statusFilter {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 35px 10px 15px;
+  font-size: 1em;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 12px;
+}
+.statusFilter:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  color: #475569;
+}
+tr:hover {
+  background-color: #f8fafc;
+}
+td button {
+  margin-right: 5px;
+}
+
+/* --- Responsive Styles (Card Layout) --- */
+@media (max-width: 768px) {
+  table thead {
+      display: none;
+  }
+  table, tbody, tr, td {
+      display: block;
+  }
+  tr {
+      margin-bottom: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+  }
+  td {
+      display: block;
+      text-align: right;
+      border-bottom: 1px dotted #ccc;
+      padding-left: 50%;
+      position: relative;
+  }
+  td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+      text-align: left;
+  }
+  td:last-child {
+      border-bottom: 0;
+  }
+  td button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+  }
+}
