@@ -5,7 +5,8 @@ const supabaseUrl = 'https://eogfdfaclptqpkknixln.supabase.co'; // REPLACE WITH 
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvZ2ZkZmFjbHB0cXBra25peGxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3ODMzNDQsImV4cCI6MjA2OTM1OTM0NH0.ikbfxz70_nGH8_7lYICyTRezE14ryuymlWR4e6BLyMg'; // REPLACE WITH YOUR SUPABASE PUBLIC ANON KEY
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // --- End Supabase Configuration ---
-
+let currentPage = 1;
+const rowsPerPage = 6; 
 // --- DOM Elements ---
 const initialLoadingMessage = document.getElementById('initial-loading-message');
 const mainAdminContent = document.getElementById('main-admin-content');
@@ -25,6 +26,47 @@ let allOrders = []; // This will be our master list of orders
  * Renders the provided array of orders into the table body.
  * @param {Array} ordersToRender - The array of order objects to display.
  */
+
+
+function updatePaginationControls() {
+    const prevBtn = document.getElementById('prev-page-btn');
+    const nextBtn = document.getElementById('next-page-btn');
+    const pageInfo = document.getElementById('page-info');
+
+    // Calculate the total number of pages needed
+    const totalPages = Math.ceil(allOrders.length / rowsPerPage);
+
+    // Update the page info text
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+    // Disable the 'Previous' button if on the first page
+    prevBtn.disabled = currentPage === 1;
+
+    // Disable the 'Next' button if on the last page
+    nextBtn.disabled = currentPage === totalPages;
+}
+
+/**
+ * Slices the main data array and renders the table for the given page.
+ * @param {number} page - The page number to display.
+ */
+function displayPage(page) {
+    currentPage = page;
+    
+    // Calculate the start and end index for the data slice
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    
+    // Get the subset of orders for the current page
+    const paginatedOrders = allOrders.slice(startIndex, endIndex);
+
+    // Render the table with only the data for the current page
+    renderTable(paginatedOrders);
+    
+    // Update the buttons and page number display
+    updatePaginationControls();
+}
+
 function renderTable(ordersToRender) {
     // Show a message if the array (original or filtered) is empty
     if (!ordersToRender || ordersToRender.length === 0) {
@@ -46,13 +88,14 @@ function renderTable(ordersToRender) {
             <td data-label="Status">${order.status}</td>
             <td data-label="Created At">${order.created_at ? new Date(order.created_at).toLocaleString('fr-DZ', { timeZone: 'Africa/Algiers' }) : 'N/A'}</td>
             <td data-label="Actions">
-            <select class="statusFilter" data-id="${order.id}">
-                <option value="pending" ${order.status.toLowerCase() === 'pending' ? 'selected' : ''}>Pending</option>
-                <option value="Shipped" ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
-                <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
-                <option value="Canceled" ${order.status === 'Canceled' ? 'selected' : ''}>Canceled</option>
-            </select>
-        </td>
+                <select class="statusFilter" data-id="${order.id}">
+                    <option value="pending" ${order.status.toLowerCase() === 'pending' ? 'selected' : ''}>Pending</option>
+                    <option value="Shipped" ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                    <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                    <option value="Canceled" ${order.status === 'Canceled' ? 'selected' : ''}>Canceled</option>
+                </select>
+                <button class="delete-btn" data-id="${order.id}">Delete</button>
+            </td>
         </tr>
     `).join('');
 
@@ -78,33 +121,52 @@ function renderTable(ordersToRender) {
 async function fetchOrders(status = '') {
     loadingMessageOrders.style.display = 'block';
     ordersTableContainer.style.display = 'none';
-    ordersTbody.innerHTML = `<tr><td colspan="11">Loading orders...</td></tr>`;
 
-    // Start building the Supabase query
+    // Start building the query
     let query = supabase
         .from('orders')
         .select('*')
         .order('created_at', { ascending: false });
 
-    // If a status is provided, add the .eq() filter to the query
+    // If a status is provided, add the filter
     if (status) {
         query = query.eq('status', status);
     }
     
-    // Execute the final query
     const { data: orders, error } = await query;
 
     loadingMessageOrders.style.display = 'none';
     ordersTableContainer.style.display = 'block';
 
     if (error) {
-        ordersTbody.innerHTML = `<tr><td colspan="11">Error: ${error.message}</td></tr>`;
         console.error('Error fetching orders:', error);
+        ordersTbody.innerHTML = `<tr><td colspan="11">Error: ${error.message}</td></tr>`;
         return;
     }
 
-    // Render the table with the fetched data (all orders or filtered orders)
-    renderTable(orders);
+    // 1. Save the newly fetched (and possibly filtered) data
+    allOrders = orders || []; 
+
+    // 2. Display page 1 of the new data set
+    displayPage(1);
+}
+// Add this to your Event Listeners section at the bottom of the file
+
+const prevBtn = document.getElementById('prev-page-btn');
+const nextBtn = document.getElementById('next-page-btn');
+
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        // Go to the previous page
+        displayPage(currentPage - 1);
+    });
+}
+
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        // Go to the next page
+        displayPage(currentPage + 1);
+    });
 }
 
 /**
@@ -146,6 +208,23 @@ async function deleteOrder(orderId) {
         }
     }
 }
+ordersTbody.addEventListener('click', (event) => {
+    
+    // --- NEW LOGIC FOR DELETE BUTTON ---
+    // Check if a button with the class 'delete-order-btn' was clicked
+    if (event.target.matches('.delete-order-btn')) {
+        // Get the order ID from the button's data-id attribute
+        const orderId = event.target.dataset.id;
+        
+        // Call your existing deleteOrder function
+        deleteOrder(orderId);
+    }
+    
+    // You can keep other click logic here too, like for product links
+    if (event.target.matches('a.product-link')) {
+        // ... your product link logic ...
+    }
+});
 
 // =================================================================================
 // AUTHENTICATION & INITIALIZATION
@@ -210,7 +289,7 @@ if (logoutBtn) {
 // Listen for clicks on the action buttons (Done, Cancel, Delete)
 ordersTbody.addEventListener('change', (event) => {
     // Check if the element that changed was a status dropdown
-    if (event.target.matches('.status-changer')) {
+    if (event.target.matches('.statusFilter')) {
         const selectElement = event.target;
         
         // Get the order ID from the dropdown's data-id attribute
@@ -226,11 +305,13 @@ ordersTbody.addEventListener('change', (event) => {
     }
 });
 
+/**
+ * Called when the status filter dropdown changes.
+ */
 function handleStatusFilterChange() {
-    const statusFilter = document.getElementById('statusFilter');
-    const selectedStatus = statusFilter.value;
+    const selectedStatus = document.getElementById('statusFilter').value;
     
-    // This now works because both functions are in the same module scope
+    // Re-fetch the orders from the backend with the selected status
     fetchOrders(selectedStatus);
 }
 
