@@ -2,6 +2,7 @@ const localProducts = [
     {
       id: 1,
       name: 'Classic T-Shirt',
+      old_price: 200.00,
       price: 25.99,
       description: 'A comfortable and stylish t-shirt made from 100% cotton.',
       image_url: [
@@ -12,21 +13,23 @@ const localProducts = [
     {
       id: 2,
       name: 'Denim Jeans',
+      old_price: 200.00,
       price: 79.50,
       description: 'High-quality denim jeans perfect for any occasion.',
       image_url: [
-        '../images/id=2/2.jpg',
-        '../images/id=2/1.jpg' 
+        '../images/id=2/1.jpg',
+        '../images/id=2/2.jpg' 
       ]
     },
     {
       id: 3,
       name: 'Modern Leather Wallet',
+      old_price: 200.00,
       price: 45.00,
       description: 'A sleek and minimalist wallet, crafted from genuine leather with multiple card slots.',
       image_url: [
-        `../images/id=3/2.jpg`,
-        `../images/id=3/1.jpg` 
+        `../images/id=3/1.jpg`,
+        `../images/id=3/2.jpg` 
       ] // Add image paths here
     },
     {
@@ -42,6 +45,7 @@ const localProducts = [
     {
       id: 5,
       name: 'Stainless Steel Watch',
+      old_price: 290.00,
       price: 250.00,
       description: 'A classic timepiece with a stainless steel band and a sapphire crystal face. Water-resistant up to 50 meters.',
       image_url: [
@@ -52,6 +56,7 @@ const localProducts = [
     {
       id: 6,
       name: 'Canvas Backpack',
+      old_price: 200.00,
       price: 65.50,
       description: 'Durable and spacious backpack with a padded laptop compartment, perfect for daily commutes or travel.',
       image_url: [

@@ -18,6 +18,69 @@ body {
   text-align: center;
 }
 
+
+/* Container for the label and selector */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* The main container for the buttons and input */
+.quantity-selector {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Styling for both plus and minus buttons */
+.quantity-btn {
+  color: #000000;
+  background-color: #f1f1f100;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.quantity-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Specific styling for button shapes */
+.minus-btn {
+  border-right: 1px solid #ccc;
+  border-radius: 0;
+}
+.plus-btn {
+  border-left: 1px solid #ccc;
+  border-radius: 0;
+}
+
+/* Styling for the number input */
+.quantity-selector input[type="number"] {
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+/* Hides arrows in Chrome, Safari, Edge */
+.quantity-selector input[type="number"]::-webkit-inner-spin-button,
+.quantity-selector input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /* --- Product Details Layout --- */
 .product-details {
   display: grid;
@@ -64,7 +127,7 @@ body {
 .product-info .price {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #16a34a;
+  color: #000000;
   margin: 1rem 0;
 }
 
@@ -75,10 +138,7 @@ body {
 
 /* --- Order Form --- */
 #order-form-container {
-  background-color: #f8fafc;
-  padding: 1.5rem;
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
 }
 
 .form-group {
@@ -87,11 +147,13 @@ body {
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
   font-weight: 600;
   color: #475569;
 }
-
+input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 input,
 select,
 textarea {
@@ -179,4 +241,27 @@ button:disabled {
   .product-info .price {
     font-size: 1.5rem;
   }
+}
+
+.price .discount-price {
+  font-weight: bold;
+  color: #000000; 
+}
+
+.price .original-price-slashed {
+  font-size: large;
+  text-decoration: line-through; /* This creates the slash through the text */
+  color: #7c7c7c;                  /* A muted grey color */             /* Make it slightly smaller */
+  margin-left: 8px;              /* Add some space between the prices */
+}
+.success-message {
+  display: none; /* Hidden by default */
+  padding: 20px;
+  background-color: #d4edda; /* Light green background */
+  color: #155724;           /* Dark green text */
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
 }

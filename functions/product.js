@@ -25,6 +25,7 @@ async function fetchDeliveryPrices() {
     }));
 }
 
+
 function setupPage() {
     const productContainer = document.getElementById('product-container');
     const orderFormContainer = document.getElementById('order-form-container');
@@ -35,9 +36,30 @@ function setupPage() {
     if (!productJSON) {
         loader.textContent = 'Error: No product data found. Please select a product from the main page.';
         return;
-    }
-
-    const product = JSON.parse(productJSON);
+    }else {
+        // 1. Create the product object FIRST
+        const product = JSON.parse(productJSON);
+    let priceHtml = '';
+    const Price = parseFloat(product.price);
+    const old_price = product.old_price ? parseFloat(product.old_price) : 0;
+    
+        // Check if there is a valid discount
+        if (Price > 0 && Price < old_price) {
+            // If yes, show the new price and the slashed old price
+            priceHtml = `
+                <p class="price">
+                    <span class="discount-price">${Price.toFixed(2)} DA</span>
+                    <span class="original-price-slashed">${old_price.toFixed(2)} DA</span>
+                </p>
+            `;
+        } else {
+            // If no discount, show only the original price
+            priceHtml = `
+                <p class="price">${Price.toFixed(2)} DA</p>
+            `;
+        }
+    
+ 
     loader.style.display = 'none';
 
     document.title = product.name;
@@ -49,7 +71,7 @@ function setupPage() {
         </div>
         <div class="product-info">
           <h1>${product.name}</h1>
-          <p class="price">${product.price} DA</p>
+          <p class="price">${priceHtml}</p>
           <p class="description">${product.description}</p>
         </div>
       </div>
@@ -97,35 +119,64 @@ function setupPage() {
 
     // 5. Display the order form
     orderFormContainer.innerHTML = `
-      <h2>Place Your Order</h2>
-      <form id="order-form">
-        <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" required></div>
-        <div class="form-group"><label for="phoneNumber">Phone Number</label><input type="tel" id="phoneNumber" required></div>
-        <div class="form-group"><label for="quantity">Quantity</label><input type="number" id="quantity" value="1" min="1" required></div>
-        <div class="form-group"><label for="state">State (Wilaya)</label>
-          <select id="state" required><option value="" disabled selected>Select a state</option></select>
-        </div>
-        <div class="form-group"><label>Delivery Option</label>
-          <div>
-            <div class="delivery-option">
-              <label for="deliveryDesk">Delivery to Desk</label>
-              <input type="radio" id="deliveryDesk" name="deliveryType" value="Desk" checked>
+        <h2>Place Your Order for ${product.name}</h2>
+        <form id="order-form">
+            <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" required></div>
+            <div class="form-group"><label for="phoneNumber">Phone Number</label><input type="tel" id="phoneNumber" required></div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <div class="quantity-selector">
+                    <button type="button" class="quantity-btn minus-btn" aria-label="Decrease quantity">&minus;</button>
+                    <input type="number" id="quantity" value="1" min="1" required>
+                    <button type="button" class="quantity-btn plus-btn" aria-label="Increase quantity">+</button>
+                </div>
             </div>
-            <div class="delivery-option">
-              <label for="deliveryHome">Home Address</label>
-              <input type="radio" id="deliveryHome" name="deliveryType" value="Home">
+
+            <div class="form-group"><label for="state">State (Wilaya)</label>
+                <select id="state" required><option value="" disabled selected>Select a state</option></select>
             </div>
-          </div>
-        </div>
-        <div class="form-group" id="home-address-group" style="display:none;"><label for="address">Home Address</label><input type="text" id="address"></div>
-        <p id="total-price-display" style="font-size: 1.2em; font-weight: bold;"></p>
-        <button type="submit">Place Order</button>
-      </form>
+            <div class="form-group"><label>Delivery Option</label>
+                <div>
+                    <div class="delivery-option">
+                        <input type="radio" id="deliveryDesk" name="deliveryType" value="Desk" checked>
+                        <label for="deliveryDesk">Delivery to Desk</label>
+                    </div>
+                    <div class="delivery-option">
+                        <input type="radio" id="deliveryHome" name="deliveryType" value="Home">
+                        <label for="deliveryHome">Home Address</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="home-address-group" style="display:none;"><label for="address">Home Address</label><input type="text" id="address"></div>
+            <p id="total-price-display" style="font-size: 1.2em; font-weight: bold;"></p>
+            <div id="success-message" class="success-message"></div>
+            <button type="submit" id="submit">Place Order</button>
+        </form>
     `;
+
+    // --- B. Find Elements & Add Listeners (AFTER they are on the page) ---
+    const quantityInput = document.getElementById('quantity');
+    const minusBtn = document.querySelector('.minus-btn');
+    const plusBtn = document.querySelector('.plus-btn');
+
+    // Make the quantity buttons work
+    if (quantityInput && minusBtn && plusBtn) {
+        plusBtn.addEventListener('click', () => {
+            quantityInput.value = parseInt(quantityInput.value, 10) + 1;
+        });
+
+        minusBtn.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value, 10);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+    }
+
 
     // Now, re-select DOM elements AFTER innerHTML is updated
     const stateSelect = document.getElementById('state');
-    const quantityInput = document.getElementById('quantity');
     const totalPriceDisplay = document.getElementById('total-price-display');
     const deliveryRadios = document.querySelectorAll('input[name="deliveryType"]');
     const homeAddressGroup = document.getElementById('home-address-group');
@@ -155,10 +206,6 @@ function setupPage() {
             return;
         }
 
-        if (!selectedState || deliveryPrices.length === 0) {
-            totalPriceDisplay.textContent = 'Please select a state and wait for prices to load.';
-            return;
-        }
 
         const stateData = deliveryPrices.find(w => w.wilaya_en === selectedState);
 
@@ -176,8 +223,6 @@ function setupPage() {
             const finalPrice = totalProductCost + deliveryCost;
 
             totalPriceDisplay.textContent = `Total Price: ${finalPrice} DZD (Delivery: ${deliveryCost} DZD)`;
-        } else {
-            totalPriceDisplay.textContent = 'Price not found for selected state.';
         }
     };
 
@@ -200,9 +245,7 @@ function setupPage() {
 
     orderForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const submitBtn = orderForm.querySelector('button');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+        const submitBtn = orderForm.querySelector('submit');
 
         const quantity = parseInt(quantityInput.value);
         const selectedState = stateSelect.value;
@@ -234,16 +277,21 @@ function setupPage() {
         };
 
         const { error: insertError } = await supabase.from('orders').insert([orderData]);
-
         if (insertError) {
             alert(`Error placing order: ${insertError.message}`);
             console.error('Order insert error:', insertError);
             submitBtn.disabled = false;
             submitBtn.textContent = 'Place Order';
         } else {
-            orderFormContainer.innerHTML = '<h2>Thank you for your order!</h2><p>Your order has been placed successfully!</p>';
+            const successContainer = document.getElementById('success-message');
+            successContainer.textContent = 'Thank you for your order! Your order has been placed successfully.';
+            // 4. Make the success message visible
+            successContainer.style.display = 'block';
+            document.querySelector('form').reset();
         }
     });
+    
+}
 }
 
 document.addEventListener('DOMContentLoaded', setupPage);

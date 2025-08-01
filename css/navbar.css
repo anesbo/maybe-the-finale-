@@ -85,6 +85,7 @@
     align-items: flex-start; /* Align links to the left */
     list-style: none; /* Remove list bullets */
     margin: 0;
+    gap: 10px;
     padding-left: 20px; /* Indent links slightly */
     z-index: 999; /* Below hamburger icon, above main content */
 
@@ -114,7 +115,7 @@
 .mobile-nav li a {
     color: rgb(255, 255, 255);
     padding-left: 5px;
-    padding: 10px 15px;
+    padding: 7px 15px;
     border-radius: 9px;
     font-size: 1.2em;
     display: block; /* Make links full width of list item */
@@ -166,11 +167,10 @@ body.no-scroll {
     .navbar {
         flex-direction: row; /* Keep hamburger and store name on one line */
         justify-content: space-between; /* Store name left, hamburger right */
-        padding: 5px 10px; /* Hide desktop nav links on small screens */
+        padding: 7px 10px; /* Hide desktop nav links on small screens */
     }
     .store-name{
-        font-size: 24px;
-        margin-bottom: 5px;
+        font-size: 30px;
     }
     .desktop-nav {
         display: none; /* Hide desktop nav links on small screens */
