@@ -77,9 +77,49 @@ function displayProductDetails(product, container) {
                 <h1>${product.name}</h1>
                 <p class="price">${priceHtml}</p>
                 <p class="description">${product.description}</p>
+                <a href="#" id="description-toggle" class="description-toggle-btn">Show More</a>
             </div>
         </div>
     `;
+    // Add this block at the end of your displayProductDetails function in product.js
+
+function setupDescriptionToggle() {
+    const description = document.querySelector('.product-info .description');
+    const toggleBtn = document.getElementById('description-toggle');
+    const infoContainer = document.querySelector('.product-info');
+
+    // Safety check to make sure elements exist
+    if (!description || !toggleBtn || !infoContainer) {
+        return;
+    }
+
+    // Check if the text is actually overflowing. If not, hide the button.
+    // We use a small timeout to let the browser render first.
+    setTimeout(() => {
+        if (description.scrollHeight > description.clientHeight) {
+            toggleBtn.style.display = 'inline-block'; // Show the button
+        }
+    }, 100);
+
+
+    // Add the click event listener
+    toggleBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the link from jumping the page
+
+        // Toggle the 'expanded' class on the parent container
+        infoContainer.classList.toggle('description-expanded');
+
+        // Change the button text based on the state
+        if (infoContainer.classList.contains('description-expanded')) {
+            toggleBtn.textContent = 'Show Less';
+        } else {
+            toggleBtn.textContent = 'Show More';
+        }
+    });
+}
+
+// Call the new function
+setupDescriptionToggle();
 
     // --- LOGIC FOR IMAGE THUMBNAILS ---
     const thumbnailsContainer = document.getElementById('thumbnails');

@@ -171,7 +171,7 @@ h1 {
   text-align: center;
   text-decoration: none;
   font-weight: bold;
-  padding:  0;
+  padding:  2px;
   margin-top: 10px;
   border: solid 1px black;
   
@@ -180,5 +180,5 @@ h1 {
 }
 
 .buy-now-btn:hover {
-  background-color: #c5c5c5; /* A darker green on hover */
+  background-color: #ebebeb; /* A darker green on hover */
 }

@@ -15,7 +15,7 @@ export const localProducts = [
     name: 'Denim Jeans',
     old_price: 200.00,
     price: 79.50,
-    description: 'High-quality denim jeans perfect for any occasion.',
+    description: 'Discover the cornerstone of every modern wardrobe: our signature Denim Jeans. Meticulously crafted from premium, soft-to-the-touch cotton denim, these jeans are designed to provide the perfect balance of rugged durability and all-day comfort. The timeless straight-leg cut offers a clean, flattering silhouette that’s perfect for any occasion—from a casual weekend outing with a t-shirt and sneakers to a smart-casual evening paired with a crisp shirt.With a classic five-pocket design, reinforced stitching, and a rich indigo wash that fades beautifully over time, these arent just another pair of jeans. They are a reliable partne',
     image_url: [
       '/images/id=2/1.webp',
       '/images/id=2/2.webp' 

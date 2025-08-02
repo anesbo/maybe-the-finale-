@@ -395,6 +395,37 @@ button:disabled {
     font-size: 1.5rem;
   }
 }
+/* Add this to your stylesheet */
+
+@media (max-width: 768px) {
+  .product-info .description {
+    /* Your existing clamp styles */
+    margin-bottom: 0px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+  }
+  .product-details{
+    margin-bottom: 0px;
+  }
+  /* NEW: When the parent has this class, remove the clamp */
+  .product-info.description-expanded .description {
+    -webkit-line-clamp: unset;
+  }
+}
+
+/* Style for the button itself */
+.description-toggle-btn {
+    display: none; /* Hidden by default, JS will show it if needed */
+    font-weight: bold;
+    color: #004ea1;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.description-toggle-btn:hover {
+    text-decoration: underline;
+}
 
 .price .discount-price {
   font-weight: bold;
