@@ -18,7 +18,7 @@ function displayProducts() {
     loader.style.display = 'none';
 
     // Define the maximum word limit for descriptions on this product listing page
-    const MAX_DESCRIPTION_WORDS_LISTING = 2; // You can adjust this value as needed
+    const MAX_DESCRIPTION_WORDS_LISTING = 3; // You can adjust this value as needed
 
     // Loop through the localProducts array (assuming localProducts is defined elsewhere)
     localProducts.forEach(product => {
