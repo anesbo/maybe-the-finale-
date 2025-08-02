@@ -7,6 +7,10 @@ body {
     position: relative; /* Needed for absolute positioning of logout button */
  
 }
+/* Alternative: Apply to absolutely every element */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 .logout-div{
     width: 100%;
     display: flex;

@@ -3,6 +3,10 @@ body {
   background-color: #f1f5f9;
   margin: 0;
 }
+/* Alternative: Apply to absolutely every element */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 /* --- Image Modal Styles --- */
 .modal {
   display: none; /* Hidden by default */

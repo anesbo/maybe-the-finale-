@@ -3,6 +3,10 @@ body{
     font-family: prompt;
     margin: 0;
 }
+/* Alternative: Apply to absolutely every element */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 /* --- Main Product Card Layout --- */
 .product-stock-card {
     background-color: #ffffff;

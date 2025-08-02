@@ -1,4 +1,8 @@
 /* --- Base Navbar Styles --- */
+/* Alternative: Apply to absolutely every element */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 .navbar {
     background-color: #1a1a1a; /* Very dark grey/black */
     padding: 15px 20px;
