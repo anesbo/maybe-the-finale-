@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Stock Overview</title>
+    <link rel="stylesheet" href="/css/stock-admin.css"> <link rel="stylesheet" href="/css/navbar.css"> 
+</head>
+<body>
+    <script type="module">
+        import { insertNavbar } from '/functions/navbar.js';
+        insertNavbar();
+    </script>
+    <div class="container">
+        <div class="logout-div">
+            <button id="logout-btn">Logout</button>
+        </div>
+        <h1>Product Stock Overview</h1>
+        <nav class="admin-nav">
+            <a href="/delivery-admin.html">Delivery Prices</a>
+            <a href="/orders-admin.html">Customer Orders</a>
+            <a href="/stock-admin.html"  class="active">Product Stock</a>
+        </nav>
+        <p>View and update the stock quantity for each product variant below.</p>
+        
+        <div id="loading-message">Loading stock...</div>
+        
+        <div id="stock-overview-container"></div>
+    </div>
+
+    <script type="module" src="/functions/stock-admin.js"></script>
+</body>
+</html>

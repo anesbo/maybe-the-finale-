@@ -73,34 +73,103 @@ function renderTable(ordersToRender) {
         ordersTbody.innerHTML = `<tr><td colspan="11">No orders found.</td></tr>`;
         return;
     }
+    // Inside your renderTable function
 
-    // Map the orders array to HTML table rows
-    const rowsHtml = ordersToRender.map(order => `
-        <tr>
-            <td data-label="Order ID">${order.id}</td>
-            <td data-label="Product Name">${order.product_name}</td>
-            <td data-label="Quantity">${order.quantity}</td>
-            <td data-label="Total Price">${parseFloat(order.total_price).toFixed(2)} DZD</td>
-            <td data-label="Customer Name">${order.name}</td>
-            <td data-label="Phone Number">${order.phoneNumber}</td>
-            <td data-label="Wilaya">${order.state || 'N/A'}</td>
-            <td data-label="Delivery Details">${order.address === 'Delivery to Desk' ? order.address :order.address}</td>
-            <td data-label="Status">${order.status}</td>
-            <td data-label="Created At">${order.created_at ? new Date(order.created_at).toLocaleString('fr-DZ', { timeZone: 'Africa/Algiers' }) : 'N/A'}</td>
-            <td data-label="Actions">
-                <select class="statusFilter" data-id="${order.id}">
-                    <option value="pending" ${order.status.toLowerCase() === 'pending' ? 'selected' : ''}>Pending</option>
-                    <option value="Shipped" ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
-                    <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
-                    <option value="Canceled" ${order.status === 'Canceled' ? 'selected' : ''}>Canceled</option>
-                </select>
-                <button class="delete-btn" data-id="${order.id}">Delete</button>
-            </td>
-        </tr>
-    `).join('');
+const rowsHtml = ordersToRender.map(order => `
+    <tr>
+        <td data-label="Order ID">${order.id}</td>
+        <td data-label="Customer Name">${order.name}</td>
+        <td data-label="Phone Number">${order.phoneNumber}</td>
+        <td data-label="Product Name">${order.product_name}</a></td>
+        <td data-label="Total Price">${parseFloat(order.total_price).toFixed(2)} DZD</td>
+        
+        <td data-label="Actions" class="actions-cell">
+            <select class="statusFilter" data-id="${order.id}">
+                <option value="pending" ${order.status.toLowerCase() === 'pending' ? 'selected' : ''}>Pending</option>
+                <option value="Shipped" ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                <option value="Canceled" ${order.status === 'Canceled' ? 'selected' : ''}>Canceled</option>
+            </select>
+            <button class="delete-btn" data-id="${order.id}">Delete</button>
+            <button class="details-btn" data-id="${order.id}">Details</button>
+        </td>
+    </tr>
+`).join('');
+
 
     ordersTbody.innerHTML = rowsHtml;
 }
+// Add this new function to your orders-admin.js file
+
+/**
+ * Finds an order by its ID and displays its full details in a modal.
+ * @param {number} orderId - The ID of the order to display.
+ */
+/**
+ * Finds an order by its ID and displays its full details in a modal.
+ * @param {number} orderId - The ID of the order to display.
+ */
+function openOrderDetailsModal(orderId) {
+    // Find the full order object from our global 'allOrders' array
+    const order = allOrders.find(o => o.id == orderId);
+
+    if (!order) {
+        console.error('Could not find order details for ID:', orderId);
+        return;
+    }
+
+    const modalBody = document.getElementById('modal-body');
+    const modal = document.getElementById('order-details-modal');
+
+    // Create the HTML to show inside the modal
+    modalBody.innerHTML = `
+        <p><strong>Order ID:</strong> ${order.id}</p>
+        <p><strong>Customer Name:</strong> ${order.name}</p>
+        <p><strong>Phone Number:</strong> ${order.phoneNumber}</p>
+        <p><strong>Product Name:</strong> ${order.product_name}</p>
+        
+        <p><strong>Size:</strong> ${order.size}</p>
+        <p><strong>Color:</strong> ${order.color}</p>
+        
+        <p><strong>Quantity:</strong> ${order.quantity}</p>
+        <p><strong>Total Price:</strong> ${parseFloat(order.total_price).toFixed(2)} DZD</p>
+        <p><strong>Status:</strong> ${order.status}</p>
+        <p><strong>Wilaya:</strong> ${order.state}</p>
+        <p><strong>Delivery Details:</strong> ${order.address}</p>
+        <p><strong>Order Date:</strong> ${new Date(order.created_at).toLocaleString('fr-DZ', { timeZone: 'Africa/Algiers' })}</p>
+    `;
+    
+    // Show the modal
+    modal.style.display = 'block';
+}
+
+// --- Add this logic to your event listeners section ---
+
+// Get modal elements
+const detailsModal = document.getElementById('order-details-modal');
+const closeModalBtn = detailsModal.querySelector('.close-btn');
+
+// Add logic for the "Details" button to your existing table body listener
+ordersTbody.addEventListener('click', (event) => {
+    // Check if a Details button was clicked
+    if (event.target.matches('.details-btn')) {
+        const orderId = event.target.dataset.id;
+        openOrderDetailsModal(orderId);
+    }
+    // ... your existing delete button logic can stay here
+});
+
+
+// Logic to close the modal
+closeModalBtn.addEventListener('click', () => {
+    detailsModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target == detailsModal) {
+        detailsModal.style.display = 'none';
+    }
+});
 
 // This part of your JavaScript function...
 
@@ -212,7 +281,7 @@ ordersTbody.addEventListener('click', (event) => {
     
     // --- NEW LOGIC FOR DELETE BUTTON ---
     // Check if a button with the class 'delete-order-btn' was clicked
-    if (event.target.matches('.delete-order-btn')) {
+    if (event.target.matches('.delete-btn')) {
         // Get the order ID from the button's data-id attribute
         const orderId = event.target.dataset.id;
         

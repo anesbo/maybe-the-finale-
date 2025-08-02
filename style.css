@@ -42,6 +42,7 @@ h1 {
 /* Product Card Styling */
 .product-card {
   background-color: white;
+  width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   text-decoration: none;
@@ -96,12 +97,7 @@ h1 {
 /* ... (Your existing CSS for body, container, h1, search-container, #search-bar) ... */
 
 /* Products Grid */
-#products-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Default for larger screens */
-  gap: 1.5rem;
-  padding: 2rem;
-}
+
 
 /* ... (Your existing Product Card Styling) ... */
 
@@ -129,7 +125,7 @@ h1 {
 @media (max-width: 480px) { /* Adjust specifically for small phones */
   #products-container {
       grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
+      gap: 0.5rem;
       padding: 0.5rem;
   }
   .product-info h2{
